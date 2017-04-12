@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../statics/css/manager.css" />
+</head>
+<body>
+	<div class="left-menu">
+        <dl>
+            <dt class="idc"><a href="#">IDC</a></dt>
+            <dt class="host"><a href="#">主机</a></dt>
+            <dt class="group"><a href="#">主机组</a></dt>
+            <dt class="host"><a href="#">主机与远程用户绑定</a></dt>
+            <dt class="host"><a href="#">远程用户</a></dt>
+            <dt class="user"><a href="#">部门</a></dt>
+            <dt class="user"><a href="#">系统用户</a></dt>          
+        </dl>        
+	</div>
+
+    <div class="content">
+        <div class="host-content">
+            <form>
+                <p><input type="text" name="hostname" placeholder="hostname"></p>
+                <p><input type="text" name="ip" placeholder="ip"></p>
+                <p><input type="text" name="port" placeholder="port"></p>
+                <p><input type="button" value="取消" onclick="HideMod();">
+                <input type="button" value="确定"></p>
+            </form>            
+        </div>
+        <div class="hostgroup-content">
+            <form>
+                <p><input type="text" name="hostgroup" placeholder="hostgroupname"></p>
+                <p><input type="button" value="取消" onclick="HideMod();">
+                <input type="button" value="确定"></p>                
+            </form>           
+        </div>
+        <div class="bind2host-content">
+            <form>
+                <span>主机名：</span><select id="hostname" onchange="change(this)"></select>
+                    
+            </form>           
+        </div>
+        
+    </div>
+    <div>
+        
+    </div>
+<!--     <div id='id1' class="c1 hide">
+
+    </div>
+    <div id="id2" class="tk hide">
+        <p class="=c3"><input type="text" placeholder="hostname"></p>
+        <p><input type="text" placeholder="ip"></p>
+        <p><input type="text" placeholder="port"></p>
+        <p><input type="button" value="取消" onclick="HideMod();">
+            <input type="button" value="确定"></p>
+
+    </div> -->
+<script type="text/javascript" src="../statics/js/jquery-2.2.3.js"></script>
+<script type="text/javascript">
+function getData(parentId , callback){
+    $.ajax({
+        url : 'test.do',//后台数据地址
+        data : {parentId : parentId},//请求parentid的数据
+        success : function(result){
+            alert(result);
+            callback(result);
+        }
+    })
+}
+ 
+function renderOptions(arr , el){//生成select 的 option
+    el.empty();
+    $.each(data , function(index , item){
+        $('<option/>').attr({
+            value : item.id
+        }).html(item.name).appendTo(el);
+    })
+}
+ 
+var department = $('#department');//系的select
+getData(0 , function(data){//请求系的数据
+    department.empty();
+    renderOptions(data , department);//这里生成系的select
+});
+ 
+var professional = $('#professional');//专业的select
+function change(el){//当系变化的时候
+    var parentId = $(el).val();//这里得到选择的系的id
+    getData(parentId , function(data){
+        professional.empty();
+        renderOptions(data , professional);//这里生成专业的select
+    });
+}
+
+// $('.wmenu dl dt').click(function(){
+// $(this).toggleClass('icotop');
+// $(this).siblings('dd').toggleClass('hidden');
+// });
+// function ShowMod(){
+//     document.getElementById('id1').classList.remove('hide');
+//     document.getElementById('id2').classList.remove('hide');
+
+// }
+// function HideMod(){
+//     document.getElementById('id1').classList.add('hide');
+//     document.getElementById('id2').classList.add('hide');
+
+// }
+</script>
+</body>
+</html>
