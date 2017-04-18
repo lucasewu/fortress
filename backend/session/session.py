@@ -3,7 +3,7 @@
 # Author:wuyy
 
 
-import config
+from conf import settings
 from hashlib import sha1
 import os
 import time
@@ -17,21 +17,23 @@ class SessionFactory:
     def get_session_obj(handler):
         obj = None
 
-        if config.SESSION_TYPE == "cache":
+        if settings.SESSION_TYPE == "cache":
             obj = CacheSession(handler)
-        elif config.SESSION_TYPE == "memcached":
+        elif settings.SESSION_TYPE == "memcached":
             obj = MemcachedSession(handler)
-        elif config.SESSION_TYPE == "redis":
+        elif settings.SESSION_TYPE == "redis":
             obj = RedisSession(handler)
         return obj
 
 
 class CacheSession:
     session_container = {}
+    # 键
     session_id = "__sessionId__"
 
     def __init__(self, handler):
         self.handler = handler
+        # 获取浏览器的cookie中__sessionId__的值
         client_random_str = handler.get_cookie(CacheSession.session_id, None)
         if client_random_str and client_random_str in CacheSession.session_container:
             self.random_str = client_random_str
@@ -39,7 +41,8 @@ class CacheSession:
             self.random_str = create_session_id()
             CacheSession.session_container[self.random_str] = {}
 
-        expires_time = time.time() + config.SESSION_EXPIRES
+        expires_time = time.time() + settings.SESSION_EXPIRES
+        # 设置cookie 键值对和超期时间__sessionId__ = "xxxxxxxxxxxxxxxx"
         handler.set_cookie(CacheSession.session_id, self.random_str, expires=expires_time)
 
     def __getitem__(self, key):

@@ -1,8 +1,11 @@
 from sqlalchemy import create_engine,Table
+
 from sqlalchemy.orm import sessionmaker
 import sys
 sys.path.append("..")
 from conf import settings
+from models import db_orm
+
 
 
 engine = create_engine(settings.DB_CONN)
