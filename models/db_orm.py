@@ -38,7 +38,7 @@ class UserProfile(Base):
     __tablename__ = 'user_profile'
     id = Column(Integer,primary_key=True,autoincrement=True)
     username = Column(String(32),unique=True,nullable=False)
-    password = Column(String(128),unique=True,nullable=False)
+    password = Column(String(128),nullable=False)
     groups = relationship('Group',secondary=Group2UserProfile)
     bind_hosts = relationship('BindHost',secondary=BindHost2UserProfile)
     audit_logs = relationship('AuditLog')

@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <base href="<%=basePath%>">
+
+    <title>下拉框双向选择</title>
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">    
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+<script type="text/javascript" src="../statics/js/jquery-2.2.3.js"></script>
+
+    <style type="text/css">
+        .ourterBorder{width:400px;height:200px;border:1px solid black;}
+        .innerDiv{height: 150px;float: left;}
+        .innerDiv input{width: 110px;}
+        .innerDiv,#buttonDiv{width: 110px;line-height: 150px;}
+        #select1{width: 110px;height: 150px;}
+        #select2{width: 110px;height: 150px;}
+    </style>
+  </head>
+
+  <body>
+            <div class="innerBorder">
+            <div class="innerDiv">
+                <select id="select1" multiple="multiple">
+                    <option value="1">选项1</option>
+                    <option value="2">选项2</option>
+                    <option value="3">选项3</option>
+                    <option value="4">选项4</option>
+                    <option value="5">选项5</option>
+                </select>
+            </div>
+            <div class="innerDiv" id="buttonDiv">
+                <input id="copyRight" type="button" value="复制到右侧"/>
+                <input id="copyAllRight" type="button" value="全部复制到右侧"/>
+                <input id="copyLeft" type="button" value="复制到左侧"/>
+                <input id="copyAllLeft" type="button" value="全部复制到左侧"/>
+            </div>
+            <div class="innerDiv">
+                <select id="select2" multiple="multiple">
+                </select>
+            </div>
+            </div>
+
+  <script type="text/javascript">
+$(function(){
+    //将选中的复制到右侧
+    $("#select1 option").click(function(){
+        //获取所有选中option
+        var options = $("#select1 option:selected");
+        //删除select中选中的option
+        var remove = options.remove();
+        console.log(remove)
+        //将选中的option添加到select2中
+        options.appendTo('#select2');
+        // options.each(function(){
+        //         alert(this.value);
+        // });
+    });
+
+    //将左侧的全部复制到右侧
+    $("#copyAllRight").click(function(){
+        //只选择select1下的option元素
+        var $allOption = $("#select1 option");
+        var $allRemove = $allOption.remove();
+        $allOption.appendTo("#select2");
+        // $allOption.each(function(){
+        //         alert(this.value);
+        // });
+    });
+
+    //将左侧复制到右侧
+    $("#select2 option").click(function(){
+
+        var $optino = $("#select2 option:selected");
+        var $remove = $optino.remove();
+        $remove.appendTo('#select1');
+
+    });
+
+    //全部复制到右侧
+    $("#copyAllLeft").click(function(){
+
+        var $allOption = $("#select2 option");
+        var $allRemove = $allOption.remove();
+        $allOption.appendTo("#select1");
+        // alert(1)
+        // getSelectedValue($allOption);
+        // $allOption.each(function(){
+        //         alert(this.value);
+        // });
+    });
+});
+
+
+function getSelectedValue(opthins){
+    opthins.each(function(){
+            alert(this.val());
+        });
+}
+</script>
+  </body>
+
+</html>

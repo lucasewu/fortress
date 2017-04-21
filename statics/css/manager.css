@@ -3,31 +3,52 @@
 	margin: 0px;
 	padding: 0px;
 }
+body{
+
+}
 
 /**页面样式**/ 
 .hidden { 
 	display:none; 
 }
+
 .left-menu a{
 	text-decoration: none;
 	color: grey;
 }
 .left-menu{
-	/*height: 500px;*/
+	height: 600px;
 	width: 200px;
 	border:1px solid #d1d1d1; 
 	background:#f3f3f3;
+	float: left;
 
 	/*text-align: center;*/
-
 }
 .left-menu dl{
 	margin-left: 20px;
 }
-.left-menu dd{
-	margin-left: 50px;
+.left-menu dt{
+	/*margin-left: 50px;*/
+	margin-top: 50px;
+	margin-bottom: 50px;
+
 
 }
+
+.content{
+	position: relative;
+	float: left; 
+}
+.content .host-content{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	margin-left: 100px;
+	margin-top: 100px;
+}
+
+/*遮罩层*/
 .c1{
    position: fixed;
 	top: 0;
@@ -38,6 +59,7 @@
 	opacity: 0.5;
 	z-index: 9;
 }
+/*弹框层*/
 .tk{
 	width: 500px;
 	height: 400px;
@@ -49,7 +71,4 @@
 	margin-left: -250px;
 	z-index: 10;
 
-}
-.hide{
-	display: none;
 }

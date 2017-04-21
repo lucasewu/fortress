@@ -1,0 +1,278 @@
+ <div class="remote_user-content hidden">
+      <form>
+          <p><input type="text" name="username" placeholder="username"></p>
+          <p><input type="text" name="password" placeholder="password"></p>
+          <p><input type="button" value="取消" onclick="HideMod();">
+          <input type="submit" value="确定">
+      </form>            
+    </div>
+    <div class="hostgroup-content hidden">
+        <form>
+            <p><input type="text" name="hostgroup" placeholder="hostgroupname"></p>
+            <p><input type="button" value="取消" onclick="HideMod();">
+            <input type="button" value="确定"></p>                
+        </form>           
+    </div>
+    <div class="bind2host-content hidden">
+      <form>
+        <div>
+        <span>HostName：</span>
+        <select value="hostname" >
+            {% for item in items %}
+                 <option>{{item}}</option>
+            {% end %}
+        </select>
+
+        </div>
+        <div>               
+        <span>Remote User：</span>
+        <input type="textarea" name="dd">
+        </div>
+        <div>
+        <span>HostGroup：</span>
+        <span>有效主机组</span>
+        <div class="valid-hostgroup">
+         <select multiple="multiple" style="width: 100px;height: 50px;">
+           <option>1</option>
+           <option>2</option>
+
+           <option>3</option>
+
+           <option>4</option>
+           <option>5</option>
+
+         </select>
+        </div>
+        <ul>
+        <li>&lt;</li>
+        <li>&lt;&lt;</li>
+        <li>&gt;</li>
+        <li>&gt;&gt;</li> 
+        </ul>
+
+      <div>
+      <span>已选择</span>
+      <div class="selected-hostgroup">
+       <select multiple="multiple" style="width: 100px;height: 50px;">
+
+          
+       </select>
+      </div>
+      </div>
+      </form>
+    </div>
+<!--                <div>
+                    <span>enable</span><input type="checkbox" name="test">
+               </div>
+               
+
+                    
+            </form>         
+        </div>
+        <div class="department-content">
+            <form>
+                <p><input type="text" name="department" placeholder="department"></p>
+                <p><input type="button" value="取消" onclick="HideMod();">
+                <input type="button" value="确定"></p>                
+            </form>           
+        </div>
+        <div class="system_user-content">
+            <form>
+                <div>
+                    <span>User：</span>
+                    <select value="hostname" onfocus="change(this)">
+                        {% for item in items %}
+                             <option>{{item}}</option>
+                        {% end %}
+                    </select>
+
+                </div>
+                <div>
+                    <span>Name：</span>
+                    <input type="textarea" name="dd">
+                </div>
+                <div>
+                    <span>department：</span>
+                    <input type="textarea" name="dd">
+                </div>
+                 <div>
+                   <span>授权主机组：</span>
+                   <span>有效主机组</span>
+                   <div>
+                   <select multiple="multiple" style="width: 100px;height: 50px;">
+                     <option>1</option>
+                     <option>2</option>
+
+                     <option>3</option>
+
+                     <option>4</option>
+                     <option>5</option>
+
+                   </select>
+                    </div>
+               </div>
+               <div>
+                   <span>已选择</span>
+                   <div>
+                   <select multiple="multiple" style="width: 100px;height: 50px;">
+                     
+
+                   </select>
+                    </div>
+               </div>
+                <div>
+                   <span>授权主机：</span>
+                   <span>有效主机</span>
+                   <div>
+                   <select multiple="multiple" style="width: 100px;height: 50px;">
+                     <option>1</option>
+                     <option>2</option>
+
+                     <option>3</option>
+
+                     <option>4</option>
+                     <option>5</option>
+
+                   </select>
+                    </div>
+               </div>
+                <div>
+                   <span>已选择</span>
+                   <div>
+                   <select multiple="multiple" style="width: 100px;height: 50px;">
+                  
+                   </select>
+                    </div>
+               </div>
+               <div>
+                   <span>begin time</span>
+                   <input type="textarea" name="dd">
+               </div>
+                <div>
+                   <span>end time</span>
+                   <input type="textarea" name="dd">
+               </div>
+
+               <div>
+                    <span>enable</span><input type="checkbox" name="test">
+               </div>
+               
+
+                    
+            </form>         
+            
+        </div>
+        
+    </div> -->
+    <div>
+        
+    </div>
+<!--     <div id='id1' class="c1 hide">
+
+    </div>
+    <div id="id2" class="tk hide">
+        <p class="=c3"><input type="text" placeholder="hostname"></p>
+        <p><input type="text" placeholder="ip"></p>
+        <p><input type="text" placeholder="port"></p>
+        <p><input type="button" value="取消" onclick="HideMod();">
+            <input type="button" value="确定"></p>
+
+    </div> -->
+
+
+
+
+    $(".valid-hostgroup option").click(function(){ 
+  
+  // var obj = $(".valid-hostgroup option:selected")
+  console.log($(this).html())
+  var h = '<option>'+$(this).html()+'</option>'
+  $(this).remove()
+  // obj.remove()
+
+  $(".selected-hostgroup select").append(h)
+
+  // .append(this)
+});
+$(".selected-hostgroup option").click(function(){ 
+  console.log($(this).html())
+  var obj = $(".selected-hostgroup option:selected")
+  obj.remove()
+  $(".valid-hostgroup select").append(obj.clone(true))
+
+  // .append(this)
+});
+// function getData(callback){
+//             $.ajax({
+//                 url: "/host",
+//                 type: 'GET',
+//                 dataType: 'text',
+//                 success: function(data, statusText, xmlHttpRequest){
+//                     callback(data);
+//                 }
+//             })
+//         }
+
+// function renderOptions(arr){//生成select 的 option
+//     $.each(data , function(index , item){
+//         $('<option/>').attr({
+//             value : item.id
+//         }).html(item.name).appendTo(el);
+//     })
+// }
+
+// function change(el){//当系变化的时候
+//     console.log(el);
+//     getData(function(data){
+//         renderOptions(data);//这里生成专业的select
+//     });
+// }
+// function getData(parentId , callback){
+//     $.ajax({
+//         url : '/host',//后台数据地址
+//         // data : {parentId : parentId},//请求parentid的数据
+//         success : function(result){
+//             alert(result);
+//             callback(result);
+//         }
+//     })
+// }
+ 
+// function renderOptions(arr , el){//生成select 的 option
+//     el.empty();
+//     $.each(data , function(index , item){
+//         $('<option/>').attr({
+//             value : item.id
+//         }).html(item.name).appendTo(el);
+//     })
+// }
+ 
+// var department = $('#department');//系的select
+// getData(0 , function(data){//请求系的数据
+//     department.empty();
+//     renderOptions(data , department);//这里生成系的select
+// });
+ 
+// var professional = $('#professional');//专业的select
+// function change(el){//当系变化的时候
+//     var parentId = $(el).val();//这里得到选择的系的id
+//     getData(parentId , function(data){
+//         professional.empty();
+//         renderOptions(data , professional);//这里生成专业的select
+//     });
+// }
+
+// $('.wmenu dl dt').click(function(){
+// $(this).toggleClass('icotop');
+// $(this).siblings('dd').toggleClass('hidden');
+// });
+// function ShowMod(){
+//     document.getElementById('id1').classList.remove('hide');
+//     document.getElementById('id2').classList.remove('hide');
+
+// }
+// function HideMod(){
+//     document.getElementById('id1').classList.add('hide');
+//     document.getElementById('id2').classList.add('hide');
+
+// }

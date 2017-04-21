@@ -30,17 +30,18 @@ class DBHandler(BaseRequestHandler):
 
 
 class HostHandler(BaseRequestHandler):
-	"""docstring for HostHandler"""
-	def get(self):
-        # self.render("login.html")
-            data = {
-            "hostid":"1",
-            "hostname":"host1"
-            }
-            self.write(data)
+    def get(self):
+        hostname = self.get_argument("hostname")
+        ip = self.get_argument("ip")
+        port = self.get_argument("port")
+        print(hostname,ip,port)
+        H = db_orm.Host(hostname= hostname,ip_addr= ip,port= port)
+        db_conn.session.add(H)
+        db_conn.session.commit()
 
-	def post(self, *args, **kwargs):
-		pass
+
+    def post(self, *args, **kwargs):
+        pass
 
 		
 
